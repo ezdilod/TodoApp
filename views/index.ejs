@@ -1,0 +1,46 @@
+<%- include("./parcials/header.ejs") %>
+
+    <body>
+        <main>
+            <div class="box" id="heading">
+                <% let currentDate=new Date(); %>
+
+                    <% // Get the day name (e.g., "Sunday" , "Monday" , etc.) %>
+                        <% let dayName=["Sunday", "Monday" , "Tuesday" , "Wednesday" , "Thursday" , "Friday"
+                            , "Saturday" ][currentDate.getDay()]; %>
+
+                            <% // Get the month name (e.g., "January" , "February" , etc.) %>
+                                <% let monthName=["January", "February" , "March" , "April" , "May" , "June" , "July"
+                                    , "August" , "September" , "October" , "November" , "December"
+                                    ][currentDate.getMonth()]; %>
+
+                                    <% // Get the day of the month (date) %>
+                                        <% let dayOfMonth=currentDate.getDate(); %>
+
+
+                                            <h1>
+                                                <%= dayName + " " + monthName + " " + dayOfMonth %>
+                                            </h1>
+            </div>
+            <div class="box" id="box">
+
+                <% if (locals.todoArray) {%>
+                    <% todoArray.forEach((item)=> { %>
+                        <div class="item">
+                            <input type="checkbox">
+                            <p>
+                                <%= item %>
+                            </p>
+                        </div>
+                        <% }); %>
+                            <% } else { %>
+
+                                <% } %>
+                                    <form class="item" action="/" method="post">
+                                        <input type="text" name="newItem" placeholder="New Item" autocomplete="off" />
+                                        <button type="submit" name="list">+</button>
+                                    </form>
+        </main>
+    </body>
+
+    <%- include("./parcials/footer.ejs") %>
